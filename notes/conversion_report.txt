@@ -1,0 +1,42 @@
+====================================================================================================
+DICTIONARY → CSV CONVERSION REPORT
+====================================================================================================
+
+NAME                                                        ROWS  STATUS                  CSV
+----------------------------------------------------------------------------------------------------
+Dictionary of Medical Terms                                16672  OK                      Dictionary of Medical Terms.csv
+Longman English Arabic                                     18080  OK                      Longman English Arabic.csv
+Longman English Arabic (from RAR)                          18080  OK                      Longman_English_Arabic_from_RAR.csv
+Longman English Arabic (from ZIP)                          18080  OK                      Longman_English_Arabic_from_ZIP.csv
+Longman Modern En-En-Ar (StarDict)                         18080  OK                      Longman Modern En-En-Ar.csv
+Oxford Arabic Dictionary (StarDict)                        57085  OK                      Oxford Arabic Dictionary.csv
+Oxford Arabic Dictionary EnAr (StarDict)                   54384  OK                      Oxford_Arabic_Dictionary_EnAr.csv
+dicthtml-en-ar (HTML folder)                              239599  OK                      dicthtml-en-ar.csv
+downloadfile-1 (PDF)                                        2784  OK                      downloadfile-1.csv
+msf-glossary (PDF)                                          3696  OK                      msf-glossary.csv
+المصطلحات_الأدبية_الحديثة (PDF)                            10170  OK                      المصطلحات_الأدبية_الحديثة.csv
+معجم مصطلحات الإعلام (PDF)                                  4198  OK                      معجم_مصطلحات_الإعلام.csv
+معجم المصطلحات الاعلامية (PDF, OCR)                         5726  OK                      معجم_المصطلحات_الاعلامية.csv
+أخطاء تنقيح النصوص (DOCX)                                     36  OK                      أخطاء_تنقيح_النصوص.csv
+Arab2English.BGL                                               0  UNSUPPORTED_FORMAT      Arab2English.csv
+Babylon_Arabic_English.BGL                                     0  UNSUPPORTED_FORMAT      Babylon_Arabic_English.csv
+Babylon_English_Arabic.BGL                                     0  UNSUPPORTED_FORMAT      Babylon_English_Arabic.csv
+English - Arabic Finacial-Legal Dictionary.ld2                 0  UNSUPPORTED_FORMAT      English_-_Arabic_Finacial-Legal_Dictionary.csv
+English_2__rabic.BGL                                           0  UNSUPPORTED_FORMAT      English_2__rabic.csv
+English_2_rabic_Glossary.BGL                                   0  UNSUPPORTED_FORMAT      English_2_rabic_Glossary.csv
+French-Arabic dictionary.bgl                                   0  UNSUPPORTED_FORMAT      French-Arabic_dictionary.csv
+Lisan Al Arab.ld2                                              0  UNSUPPORTED_FORMAT      Lisan_Al_Arab.csv
+Medicine_English_Arabic.BGL                                    0  UNSUPPORTED_FORMAT      Medicine_English_Arabic.csv
+Vicon English-Arabic Dictionary.ld2                            0  UNSUPPORTED_FORMAT      Vicon_English-Arabic_Dictionary.csv
+_Concise_English_rabic_Dicti.BGL                               0  UNSUPPORTED_FORMAT      _Concise_English_rabic_Dicti.csv
+
+
+Total dictionaries processed: 25
+  OK          : 14  (text-based formats: MDX, StarDict, HTML, PDF, DOCX)
+  UNSUPPORTED : 11  (Babylon BGL/LD2 — proprietary binary)
+
+Total entries extracted: 466,670
+
+Output directory: /home/z/my-project/dict_work/csv_output/
+Each CSV has columns: term, definition, source_file
+Encoding: UTF-8 with BOM (Excel-compatible)

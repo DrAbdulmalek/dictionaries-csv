@@ -1,0 +1,2 @@
+﻿term,definition,source_file
+[CONVERSION NOTE],"Babylon .LD2 is a proprietary binary format not directly readable. To convert: open with Babylon desktop app and export as tab-separated text, OR install dictconv (https://github.com/ilius/dictconv) and run: dictconv input.bgl -o output.txt. Then re-run convert_dicts.py on the exported .txt file.",Vicon English-Arabic Dictionary.ld2
