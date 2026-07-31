@@ -1,0 +1,16 @@
+{
+  "pdf_name": "المرجع الدوائي السوري",
+  "total_pages": 200,
+  "pages_processed": 200,
+  "total_lines": 19927,
+  "chapters": 249,
+  "sections": 652,
+  "arabic_content_ratio": 1.0,
+  "ocr_engine": "Tesseract (ara lang, PSM 6, 150 DPI)",
+  "garbled_text_detected": true,
+  "garbled_text_note": "PDF has embedded text layer with corrupted Arabic encoding. OCR was used instead.",
+  "pdf_deletable": true,
+  "deletion_note": "يمكن حذف ملف PDF بعد التحقق اليدوي — 19,927 سطر مستخرج (100% محتوى عربي). تحقق من عينة عشوائية قبل الحذف.",
+  "processing_time_sec": "distributed across multiple sessions",
+  "processing_date": "2026-07-31T02:20:45.308767"
+}
