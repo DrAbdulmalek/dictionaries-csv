@@ -34,7 +34,13 @@ from typing import Iterator, Optional
 
 # ─── Bootstrap: stub lzo so readmdict imports without system lzo ───
 _lzo_stub = type(sys)("lzo")
-_lzo_stub.decompress = lambda data, unused=None: data   # no-op (mdx files here are not lzo-compressed)
+def _safe_lzo_decompress(data, unused=None):
+    """Detect real LZO compression and refuse to silently corrupt data."""
+    if data[:4] == b"\x89LZO":
+        raise RuntimeError("Real LZO compression detected. Install: pip install python-lzo")
+    return data
+
+_lzo_stub.decompress = _safe_lzo_decompress
 _lzo_stub.compress = lambda data, unused=None: data
 sys.modules.setdefault("lzo", _lzo_stub)
 
@@ -42,7 +48,11 @@ sys.modules.setdefault("lzo", _lzo_stub)
 import bs4  # noqa: E402
 from bs4 import BeautifulSoup  # noqa: E402
 
-ROOT = Path("/home/z/my-project/dict_work")
+import argparse as _argparse
+_parser = _argparse.ArgumentParser(add_help=False)
+_parser.add_argument("--root", default=os.environ.get("DICT_WORK_DIR", "."))
+_args, _ = _parser.parse_known_args()
+ROOT = Path(_args.root).resolve()
 EXTRACTED = ROOT / "extracted" / "New Folder"
 UNPACKED = ROOT / "unpacked"
 CSV_OUT = ROOT / "csv_output"
@@ -77,7 +87,9 @@ def _strip_html(html: str) -> str:
 
 def _safe_csv_name(name: str) -> str:
     """Make a filename safe for the CSV output."""
-    return re.sub(r"[^\w\u0600-\u06FF\u0750-\u077F\-. ]+", "_", name).strip().rstrip("_")
+    safe = re.sub(r"[^\w\u0600-\u06FF\u0750-\u077F\-. ]+", "_", name)
+    safe = re.sub(r"\.{2,}", ".", safe)
+    return safe.strip().rstrip("._")
 
 
 def _write_csv(rows: list[tuple[str, str, str]], out_path: Path, source_name: str) -> int:

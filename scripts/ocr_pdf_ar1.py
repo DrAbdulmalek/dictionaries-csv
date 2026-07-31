@@ -16,12 +16,18 @@ import pytesseract
 from PIL import Image
 import pdfplumber
 
-PDF = "/home/z/my-project/dict_work/pdf_ar1.pdf"
-OUT_CSV = "/home/z/my-project/dict_work/csv_output/معجم_المصطلحات_الاعلامية.csv"
-SOURCE_NAME = "معجم المصطلحات الاعلامية"
+import argparse as _argparse
+_p = _argparse.ArgumentParser()
+_p.add_argument("--pdf", default=os.environ.get("DICT_PDF_PATH", "pdf_ar1.pdf"))
+_p.add_argument("--out", default=os.environ.get("DICT_OUT_CSV", "csv_output/معجم_المصطلحات_الاعلامية.csv"))
+_p.add_argument("--source", default="معجم المصطلحات الاعلامية")
+_a = _p.parse_args()
+PDF = _a.pdf
+OUT_CSV = _a.out
+SOURCE_NAME = _a.source
 
 # Tell tesseract where to find ara.traineddata
-os.environ["TESSDATA_PREFIX"] = "/home/z/my-project/dict_work/tessdata"
+os.environ.setdefault("TESSDATA_PREFIX", os.environ.get("TESSDATA_PREFIX", "/usr/share/tessdata"))
 
 
 def _clean(text: str) -> str:
