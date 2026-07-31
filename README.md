@@ -142,12 +142,19 @@ python3 scripts/extract_nested.py
 # 4) تحويل الكل (StarDict + MDX + HTML + PDF + DOCX)
 python3 scripts/convert_dicts.py
 
-# 5) OCR للـ PDF الممسوح ضوئياً (يتطلب tesseract + ara.traineddata)
-python3 scripts/ocr_pdf_ar1.py
-# أو مقسّم (لتفادي timeout):
-python3 scripts/ocr_pdf_chunk.py 0 20 chunk1.csv
-python3 scripts/ocr_pdf_chunk.py 20 40 chunk2.csv
-# ... ثم دمج الـ chunks
+# 5) OCR للـ PDF الممسوح ضوئياً — خوارزمية v2 المحسّنة
+#    (تتطلب tesseract + ara.traineddata + eng.traineddata)
+export TESSDATA_PREFIX=/path/to/tessdata
+
+# للملفات الصغيرة (<20 صفحة):
+python3 scripts/ocr_bilingual_dict_v2.py INPUT.pdf OUTPUT.csv \
+    --dpi 300 --start 0 --end N --src-name "Dictionary Name"
+
+# للملفات الكبيرة: شغّل على دفعات (chunks) ثم ادمج
+python3 scripts/ocr_bilingual_dict_v2.py INPUT.pdf chunk1.csv --start 0  --end 20
+python3 scripts/ocr_bilingual_dict_v2.py INPUT.pdf chunk2.csv --start 20 --end 40
+python3 scripts/ocr_bilingual_dict_v2.py INPUT.pdf chunk3.csv --start 40 --end 60
+python3 scripts/merge_chunks.py /tmp/ocr_chunks OUTPUT.csv
 
 # 6) توليد التقرير النهائي
 python3 scripts/finalize_report.py
@@ -166,7 +173,7 @@ python3 scripts/finalize_report.py
 | msf-glossary (PDF) | ⭐⭐⭐⭐ | جيد |
 | المصطلحات الأدبية الحديثة (PDF) | ⭐⭐⭐ | PDF 416 صفحة، قد يحتاج تنظيف يدوي |
 | معجم مصطلحات الإعلام (PDF) | ⭐⭐⭐⭐ | جيد |
-| معجم المصطلحات الاعلامية (OCR) | ⭐⭐⭐ | OCR بنسبة دقة ~85% — قد يحتاج مراجعة |
+| معجم المصطلحات الاعلامية (OCR) | ⭐⭐⭐⭐⭐ | نسخة مراجعة يدوياً: 1,036 مدخل (A–F). انظر `notes/CONVERSION_NOTES.md` لتفاصيل خوارزمية v2 المحسّنة |
 | downloadfile-1 (PDF) | ⭐⭐ | تخطيط معقد، بعض الصفوف الفارغة |
 | أخطاء تنقيح النصوص (DOCX) | ⭐⭐⭐⭐ | نص حر، 36 فقرة فقط |
 
