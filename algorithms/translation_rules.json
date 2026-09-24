@@ -1,0 +1,55 @@
+{
+  "source": "المصطلحات الأدبية الحديثة: دراسة ومعجم إنجليزي-عربي — د. محمد عناني",
+  "purpose": "قواعد قابلة للتوظيف في محركات الترجمة الآلية وتوليد المصطلحات",
+  "rules": [
+    {
+      "id": "continual_refining",
+      "name_en": "Continual Refining of Terms",
+      "name_ar": "التعديل الدلالي المتواصل",
+      "rule": "بناء شرط سياقي (discipline context) قبل اختيار المقابل؛ المعنى يتغير جذرياً بتغير المجال العلمي",
+      "example": {
+        "term": "statement",
+        "contexts": {
+          "politics": ["بيان", "تقرير"],
+          "law": ["إفادة", "أقوال"],
+          "literary_criticism": ["تقرير مباشر"]
+        }
+      },
+      "implementation": "lookup(term, domain) مع حلقة تغذية راجعة تحدّث المقابل مع تبلور الاستعمال"
+    },
+    {
+      "id": "selection_vs_combination",
+      "name_en": "Jakobson: Selection vs. Combination",
+      "name_ar": "محورا الاختيار والتضام",
+      "rule": "لا يقتصر المحرك على الاستبدال المعجمي (paradigmatic) بل يراعي التضام السياقي (syntagmatic)",
+      "axes": {
+        "selection": { "basis": "المشابهة resemblance", "source_of": "الاستعارة metaphor" },
+        "combination": { "basis": "التلامس contiguity", "source_of": "الكناية metonymy" }
+      },
+      "poetic_function": "إسقاط مبدأ التعادل من محور الاختيار إلى محور التضام"
+    },
+    {
+      "id": "terminology_generation_hierarchy",
+      "name_en": "Standardizing Terminology",
+      "name_ar": "معايير توليد المصطلح العربي",
+      "rule": "خوارزمية هرمية بترتيب الأولوية",
+      "priority": ["derivation الاشتقاق القياسي", "artificial_source المصدر الصناعي (ياء مشددة وتاء مربوطة للمذاهب)", "relational_adjectives النسبة المخصصة", "semantic_shift التطوير الدلالي لكلمة تراثية", "arabization التعريب كحل أخير وفق أوزان العربية"]
+    },
+    {
+      "id": "semantic_vs_communicative",
+      "name_en": "Semantic vs. Communicative Translation",
+      "name_ar": "الترجمة الدلالية والتوصيلية",
+      "rule": "تصنيف نوع النص أولاً ثم اختيار نمط الترجمة",
+      "text_types": {
+        "scientific_conceptual": "semantic_translation — الدقة الفكرية لنقل المضامين",
+        "literary_aesthetic": "communicative_translation — التأثير في المتلقي والسياق الثقافي"
+      }
+    },
+    {
+      "id": "social_filtering",
+      "name_en": "Silting / Social Filtering",
+      "name_ar": "الغربلة الاجتماعية",
+      "rule": "المصطلح يخضع لغربلة اجتماعية وتوارث ثقافي قبل استقراره؛ يُدقَّق تداوله قبل الاعتماد الآلي"
+    }
+  ]
+}
