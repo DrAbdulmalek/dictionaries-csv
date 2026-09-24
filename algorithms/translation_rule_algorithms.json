@@ -1,0 +1,80 @@
+{
+  "source": "Translation Algorithms & Rules Logic (قواعد التحويل الهيكلي للترجمة الإنجليزية-العربية)",
+  "scope": "خوارزميات هيكلية قابلة للبرمجة لتحويل الجملة الإنجليزية إلى عربية فصيحة",
+  "pipeline": {
+    "id": "main_translation_process",
+    "steps": ["split_into_sentences", "tokenize_and_pos_tag", "analyze_context (legal/medical/general)", "apply_structural_rules", "generate_target_sentence", "apply_stylistic_enhancements", "post_process_polish"]
+  },
+  "algorithms": [
+    {
+      "id": "word_sense_disambiguation",
+      "trigger": "polysemous word",
+      "domain_overrides": {
+        "legal": { "right": "حَق", "court": "محكمة", "party": "طَرَف" },
+        "medical": { "tender": "حساس لللمس / مؤلم", "culture": "مزرعة بكتيرية", "patient": "مريض" },
+        "general": {
+          "right": { "next_word in [side] or prev_word in [turn, on]": "يمين", "next_word == to": "حَق", "default": "صحيح / صواب" }
+        }
+      },
+      "fallback": "default_most_frequent_meaning"
+    },
+    {
+      "id": "sentence_restructuring",
+      "input_structure": "SVO",
+      "output": {
+        "verbal_preferred": "VSO — فعل، فاعل، مفعول",
+        "nominal_focus": "SVO — جملة اسمية للتأكيد"
+      },
+      "post_steps": ["adjust_gender_and_number_agreement", "consolidate_sentence"]
+    },
+    {
+      "id": "adjective_order",
+      "rule": "عكس ترتيب الصفات: EN [Adj1+Adj2+Noun] -> AR [Noun+Adj1+Adj2]",
+      "example": { "en": "A huge black bear", "ar": "دُبّ أسود ضخم" },
+      "constraints": ["match gender agreement", "match plurality (singular/dual/plural)"]
+    },
+    {
+      "id": "passive_voice_processing",
+      "rules": {
+        "agent_known": "تحويل إلى مبني للمعلوم: فعل مذكر/مؤنث حسب الفاعل + الفاعل + المفعول",
+        "agent_unknown": {
+          "modern_standard": "صيغة تمَّ/جرى + المصدر + المفعول",
+          "classical": "فعل مبني للمجهول + المفعول (نائب فاعل)"
+        }
+      }
+    },
+    {
+      "id": "articles_processing",
+      "rules": {
+        "a/an": "تنكير — لا تضاف أداة تعريف",
+        "the": "إضافة (ال) غالباً، إلا الأعلام التي لا تقبلها",
+        "zero_article_generic_plural": "إضافة (ال) للجمع العام: Dogs are loyal -> الكلاب وفية",
+        "note": "العربية تعرّف الأجناس والمفاهيم المجردة بـ(ال) أحياناً حيث الإنجليزية تنكّرها"
+      }
+    },
+    {
+      "id": "adverb_transformation",
+      "en_pattern": "-ly adverb",
+      "styles": {
+        "mafool_mutlaq": "مصدر + صفة منصوبة: ركض ركضاً سريعاً",
+        "prepositional_phrase": "بـ + صفة: بسرعة",
+        "compound_phrase": "على نحو / بشكل + صفة",
+        "default_hal": "حال منصوب: مسرعاً"
+      }
+    },
+    {
+      "id": "acronyms_abbreviations",
+      "rules": {
+        "known_acronym_phonetic": "نقل صوتي: UNESCO -> يونسكو",
+        "known_acronym_translation": "ترجمة: WHO -> منظمة الصحة العالمية",
+        "measurement_unit": "ترجمة الوحدة: km -> كم، ppm -> جزء في المليون",
+        "unknown": "فك الاختصار أولاً ثم ترجمة العبارة كاملة"
+      }
+    },
+    {
+      "id": "post_processing_polish",
+      "steps": ["remove_redundant_words", "fix_punctuation_spacing", "correct_grammar_and_diacritics", "fix_arabic_connectors_rules"]
+    }
+  ],
+  "integration_with_anani_rules": "تعمل هذه الخوارزميات الهيكلية مع قواعد أناني في algorithms/translation_rules.json: قواعد أناني تحكم اختيار المقابل المصطلحي حسب السياق والمجال، وهذه تحكم التحويل الهيكلي للجملة والصقل النهائي"
+}
