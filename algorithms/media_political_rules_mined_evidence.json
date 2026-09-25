@@ -1,0 +1,1556 @@
+{
+ "corpus": {
+  "total_pairs": 1600,
+  "political": 1030,
+  "media": 570
+ },
+ "A_strategy_profile": {
+  "transliteration_like": 91,
+  "partial": 158,
+  "semantic": 1351,
+  "transliteration_examples": [
+   {
+    "en": "Atimia",
+    "ar": "أتيميا",
+    "sim": 1.0
+   },
+   {
+    "en": "ASEAN",
+    "ar": "آسيان",
+    "sim": 1.0
+   },
+   {
+    "en": "Anzus",
+    "ar": "الأنزوس",
+    "sim": 1.0
+   },
+   {
+    "en": "Infomedia",
+    "ar": "إنفوميديا",
+    "sim": 1.0
+   },
+   {
+    "en": "Boer",
+    "ar": "البوير",
+    "sim": 1.0
+   },
+   {
+    "en": "Anzus",
+    "ar": "حلف المحيط الهادي أنظر الأنزوس",
+    "sim": 1.0
+   },
+   {
+    "en": "NATO",
+    "ar": "حلف الناتو",
+    "sim": 1.0
+   },
+   {
+    "en": "Salt ٢",
+    "ar": "سالت ٢",
+    "sim": 1.0
+   },
+   {
+    "en": "Brest",
+    "ar": "صلح برست ليتوفسك / أنظر برست ليتوفسك",
+    "sim": 1.0
+   },
+   {
+    "en": "Arabite",
+    "ar": "العروبة",
+    "sim": 1.0
+   },
+   {
+    "en": "Kulak",
+    "ar": "الكولاك",
+    "sim": 1.0
+   },
+   {
+    "en": "Multi-Media",
+    "ar": "مالتي ميديا",
+    "sim": 1.0
+   },
+   {
+    "en": "ASEAN",
+    "ar": "مجمج موعة دول جنوب شرقي آسيا) آسيان (",
+    "sim": 1.0
+   },
+   {
+    "en": "Brest",
+    "ar": "معاهدة برست ليتوفسك / أنظر برست ليتوفسك",
+    "sim": 1.0
+   },
+   {
+    "en": "NATO",
+    "ar": "الناتو",
+    "sim": 1.0
+   }
+  ]
+ },
+ "B_order_inversion": {
+  "inverted_evidence": 19,
+  "same_order_evidence": 11,
+  "examples_inverted": [
+   {
+    "en": "New Atlantis",
+    "ar": "أطلانطا الجديدة"
+   },
+   {
+    "en": "Central America",
+    "ar": "أمريكا الوسطى"
+   },
+   {
+    "en": "Western Sahara",
+    "ar": "الصحراء الغربية"
+   },
+   {
+    "en": "Unionist Domination",
+    "ar": "هيمنة اتحادية"
+   },
+   {
+    "en": "Gold Jubilee",
+    "ar": "اليوبيل الذهبي"
+   },
+   {
+    "en": "office automation",
+    "ar": "أَتْمتَة مكتبية"
+   },
+   {
+    "en": "pay television",
+    "ar": "التليفزيون المدفوع"
+   },
+   {
+    "en": "commercial television",
+    "ar": "تليفزيون تجاري"
+   },
+   {
+    "en": "community television",
+    "ar": "تليفزيون محلي"
+   },
+   {
+    "en": "press secretary",
+    "ar": "سكرتير صحفي"
+   },
+   {
+    "en": "political street",
+    "ar": "الشارع السياسي"
+   },
+   {
+    "en": "diagram film",
+    "ar": "فيلم بياني"
+   }
+  ],
+  "examples_same": [
+   {
+    "en": "Gender & Development",
+    "ar": "الجندر والتنمية"
+   },
+   {
+    "en": "Home Rule",
+    "ar": "الحكم الذاتي"
+   },
+   {
+    "en": "Mac World",
+    "ar": "عالم ماك"
+   },
+   {
+    "en": "Fulbright Resolution",
+    "ar": "فولبرايت)) مشروع ("
+   },
+   {
+    "en": "Hunter College",
+    "ar": "هنتر كوليج"
+   },
+   {
+    "en": "trap effect",
+    "ar": "أثر الشّرَك"
+   },
+   {
+    "en": "direct lighting",
+    "ar": "إضاءة مباشرة"
+   },
+   {
+    "en": "fade down",
+    "ar": "خفض تدريجي"
+   }
+  ]
+ },
+ "C_prefix_rules": [
+  {
+   "affix": "de",
+   "kind": "pre",
+   "support_terms": 35,
+   "arabic_correspondences": [
+    {
+     "ar": "ديم",
+     "n": 6,
+     "precision": 0.46
+    }
+   ],
+   "examples": [
+    {
+     "en": "Deference",
+     "ar": "إذعان"
+    },
+    {
+     "en": "Decay",
+     "ar": "انهيار"
+    },
+    {
+     "en": "Dependance",
+     "ar": "التبعية"
+    },
+    {
+     "en": "Decisional Techologies",
+     "ar": "تكنولوجيا اتخاذ القرار"
+    },
+    {
+     "en": "Development",
+     "ar": "التنمية"
+    },
+    {
+     "en": "Development Of Under-Development",
+     "ar": "تنمية التخلف"
+    }
+   ]
+  },
+  {
+   "affix": "dis",
+   "kind": "pre",
+   "support_terms": 13,
+   "arabic_correspondences": [
+    {
+     "ar": "توزيع",
+     "n": 3,
+     "precision": 0.43
+    },
+    {
+     "ar": "خطاب",
+     "n": 4,
+     "precision": 0.67
+    }
+   ],
+   "examples": [
+    {
+     "en": "Disorder / Dysergy",
+     "ar": "التفكك"
+    },
+    {
+     "en": "Discrimination",
+     "ar": "التمييز والمحاباة"
+    },
+    {
+     "en": "Discourse",
+     "ar": "خطاب"
+    },
+    {
+     "en": "Distributive Changes",
+     "ar": "الظواهر التوزيعية المتغيرة"
+    },
+    {
+     "en": "Disarmament",
+     "ar": "نزع السلاح"
+    },
+    {
+     "en": "discoursive communication",
+     "ar": "اتصال خِطابي"
+    }
+   ]
+  },
+  {
+   "affix": "free",
+   "kind": "pre",
+   "support_terms": 11,
+   "arabic_correspondences": [
+    {
+     "ar": "حريةال",
+     "n": 6,
+     "precision": 0.67
+    },
+    {
+     "ar": "البحار",
+     "n": 3,
+     "precision": 0.6
+    },
+    {
+     "ar": "يالبحا",
+     "n": 3,
+     "precision": 0.75
+    }
+   ],
+   "examples": [
+    {
+     "en": "Free Trade Unions",
+     "ar": "اتحادات عمال حرة"
+    },
+    {
+     "en": "Freedom Of The High Seas",
+     "ar": "حرية أعالي البحار"
+    },
+    {
+     "en": "Freedom Of Expression",
+     "ar": "حرية التعبير"
+    },
+    {
+     "en": "Freedom With Leadership",
+     "ar": "الحرية ذات الهدف"
+    },
+    {
+     "en": "Freedom Of Fishing",
+     "ar": "حرية الصيد"
+    },
+    {
+     "en": "Freedom Of Flay Over The High Seas",
+     "ar": "حرية الطيران فوق أعالي البحار"
+    }
+   ]
+  },
+  {
+   "affix": "global",
+   "kind": "pre",
+   "support_terms": 6,
+   "arabic_correspondences": [
+    {
+     "ar": "كوكب",
+     "n": 3,
+     "precision": 1.0
+    }
+   ],
+   "examples": [
+    {
+     "en": "Globalist",
+     "ar": "الرأي الكوني"
+    },
+    {
+     "en": "Globalization",
+     "ar": "العولمة أو الكوكبة"
+    },
+    {
+     "en": "Global Village",
+     "ar": "القرية العالمية"
+    },
+    {
+     "en": "Globalization",
+     "ar": "الكوكبة"
+    },
+    {
+     "en": "Global Negotiations",
+     "ar": "مفاوضات شاملة"
+    },
+    {
+     "en": "global media",
+     "ar": "وسائل إعلام كوكبية(عولمية)"
+    }
+   ]
+  },
+  {
+   "affix": "inter",
+   "kind": "pre",
+   "support_terms": 28,
+   "arabic_correspondences": [
+    {
+     "ar": "الدولي",
+     "n": 17,
+     "precision": 0.63
+    },
+    {
+     "ar": "لدولية",
+     "n": 12,
+     "precision": 0.67
+    },
+    {
+     "ar": "ةالدول",
+     "n": 6,
+     "precision": 0.43
+    },
+    {
+     "ar": "دوليةل",
+     "n": 5,
+     "precision": 1.0
+    },
+    {
+     "ar": "وليةلل",
+     "n": 5,
+     "precision": 1.0
+    }
+   ],
+   "examples": [
+    {
+     "en": "Internet-Ethics",
+     "ar": "أخلاقيات الإنترنت"
+    },
+    {
+     "en": "International Bill Of Human Rights / The Universal Declaration Of Human Rights",
+     "ar": "الإعلان العالمي لحقوق الإنسان"
+    },
+    {
+     "en": "International Détente",
+     "ar": "الانفراج الدولي"
+    },
+    {
+     "en": "International Bank For Reconstruction And Development (IBRD)",
+     "ar": "البنك الدولي للإنشاء والتعمير"
+    },
+    {
+     "en": "International Cultivation Analysis",
+     "ar": "تحليل الإنماء الدولي"
+    },
+    {
+     "en": "Interdependent Culture",
+     "ar": "الثقافات الاتكالية"
+    }
+   ]
+  },
+  {
+   "affix": "local",
+   "kind": "pre",
+   "support_terms": 4,
+   "arabic_correspondences": [
+    {
+     "ar": "محلية",
+     "n": 4,
+     "precision": 1.0
+    }
+   ],
+   "examples": [
+    {
+     "en": "local area network (lan)",
+     "ar": "شبكة محلية (لان)"
+    },
+    {
+     "en": "local papers",
+     "ar": "صحف محلية"
+    },
+    {
+     "en": "localism",
+     "ar": "عولمة محلية"
+    },
+    {
+     "en": "local media",
+     "ar": "وسائل إعلام محلية"
+    }
+   ]
+  },
+  {
+   "affix": "mass",
+   "kind": "pre",
+   "support_terms": 10,
+   "arabic_correspondences": [
+    {
+     "ar": "جماهير",
+     "n": 9,
+     "precision": 0.75
+    },
+    {
+     "ar": "ماهيري",
+     "n": 8,
+     "precision": 0.8
+    },
+    {
+     "ar": "اهيرية",
+     "n": 5,
+     "precision": 0.71
+    },
+    {
+     "ar": "الجماه",
+     "n": 4,
+     "precision": 0.57
+    },
+    {
+     "ar": "لجماهي",
+     "n": 4,
+     "precision": 0.57
+    },
+    {
+     "ar": "ةالجما",
+     "n": 3,
+     "precision": 0.5
+    }
+   ],
+   "examples": [
+    {
+     "en": "Mass",
+     "ar": "جمهرة"
+    },
+    {
+     "en": "Mass Political Movements",
+     "ar": "الحركات السياسية الجماهيرية"
+    },
+    {
+     "en": "Mass Movement",
+     "ar": "الحركة الجماهيرية"
+    },
+    {
+     "en": "Mass Society",
+     "ar": "مجتمع جماهيري"
+    },
+    {
+     "en": "Mass Participation",
+     "ar": "المشاركة الجماهيرية"
+    },
+    {
+     "en": "Mass Customization",
+     "ar": "وسائط إعلامية حسب طلب الجماهير"
+    }
+   ]
+  },
+  {
+   "affix": "mis",
+   "kind": "pre",
+   "support_terms": 7,
+   "arabic_correspondences": [
+    {
+     "ar": "خاطئ",
+     "n": 3,
+     "precision": 1.0
+    }
+   ],
+   "examples": [
+    {
+     "en": "Missionaries",
+     "ar": "المبشرون"
+    },
+    {
+     "en": "miscast",
+     "ar": "إساءة اختيار"
+    },
+    {
+     "en": "misquote",
+     "ar": "اقتباس خاطئ"
+    },
+    {
+     "en": "misstatement",
+     "ar": "بيان كاذب"
+    },
+    {
+     "en": "misinformation",
+     "ar": "تضليل إعلامي"
+    },
+    {
+     "en": "misreport",
+     "ar": "تقرير خاطئ"
+    }
+   ]
+  },
+  {
+   "affix": "multi",
+   "kind": "pre",
+   "support_terms": 7,
+   "arabic_correspondences": [
+    {
+     "ar": "متعددة",
+     "n": 3,
+     "precision": 0.75
+    }
+   ],
+   "examples": [
+    {
+     "en": "Multinational",
+     "ar": "الشركات متعددة الجنسية"
+    },
+    {
+     "en": "Multi-Media",
+     "ar": "مالتي ميديا"
+    },
+    {
+     "en": "Multilateral Aid",
+     "ar": "المساعدات الخارجية المشتركة"
+    },
+    {
+     "en": "Multipolae System",
+     "ar": "نظام تعدد القوى"
+    },
+    {
+     "en": "Multi-Media",
+     "ar": "الوسائط المتعددة"
+    },
+    {
+     "en": "multicolor",
+     "ar": "متعدد الألوان"
+    }
+   ]
+  },
+  {
+   "affix": "national",
+   "kind": "pre",
+   "support_terms": 15,
+   "arabic_correspondences": [
+    {
+     "ar": "القومي",
+     "n": 5,
+     "precision": 0.62
+    },
+    {
+     "ar": "لقومية",
+     "n": 3,
+     "precision": 0.6
+    },
+    {
+     "ar": "الوطن",
+     "n": 3,
+     "precision": 0.5
+    }
+   ],
+   "examples": [
+    {
+     "en": "National Minorities",
+     "ar": "الأقليات القومية"
+    },
+    {
+     "en": "National Salvation",
+     "ar": "الإنقاذ الوطني"
+    },
+    {
+     "en": "National-Building",
+     "ar": "بناء الأمة"
+    },
+    {
+     "en": "Nationalization",
+     "ar": "التأميم"
+    },
+    {
+     "en": "National Integration",
+     "ar": "التكامل القومي"
+    },
+    {
+     "en": "Nationality Movements",
+     "ar": "حركة الجنسيات"
+    }
+   ]
+  },
+  {
+   "affix": "pan",
+   "kind": "pre",
+   "support_terms": 6,
+   "arabic_correspondences": [
+    {
+     "ar": "قطةاست",
+     "n": 3,
+     "precision": 1.0
+    },
+    {
+     "ar": "ستعراض",
+     "n": 3,
+     "precision": 1.0
+    },
+    {
+     "ar": "تعراضي",
+     "n": 3,
+     "precision": 1.0
+    },
+    {
+     "ar": "ةاستعر",
+     "n": 3,
+     "precision": 1.0
+    },
+    {
+     "ar": "لقطةاس",
+     "n": 3,
+     "precision": 1.0
+    },
+    {
+     "ar": "عراضية",
+     "n": 3,
+     "precision": 1.0
+    }
+   ],
+   "examples": [
+    {
+     "en": "Pan German League",
+     "ar": "الجامعة الجرمانية"
+    },
+    {
+     "en": "Pan-Asiatic Association",
+     "ar": "جمعية الوحدة الآسيوية"
+    },
+    {
+     "en": "Pan-African Connnngress Movement",
+     "ar": "حركة مؤتمر الجامعة الأفريقية"
+    },
+    {
+     "en": "pan shot",
+     "ar": "لقطة استعراضية"
+    },
+    {
+     "en": "pan left",
+     "ar": "لقطة استعراضية إلى اليسار"
+    },
+    {
+     "en": "pan right",
+     "ar": "لقطة استعراضية إلى اليمين"
+    }
+   ]
+  },
+  {
+   "affix": "pre",
+   "kind": "pre",
+   "support_terms": 24,
+   "arabic_correspondences": [
+    {
+     "ar": "صحفي",
+     "n": 8,
+     "precision": 0.44
+    }
+   ],
+   "examples": [
+    {
+     "en": "Presistence Of Aggregates",
+     "ar": "استمرار المجتمع"
+    },
+    {
+     "en": "Prejudice",
+     "ar": "التحيز والتعصب"
+    },
+    {
+     "en": "Prejudice",
+     "ar": "التعصب"
+    },
+    {
+     "en": "Press Freedom",
+     "ar": "حرية الصحافة"
+    },
+    {
+     "en": "Preventive Diplomacy",
+     "ar": "الدبلوماسية الوقائية"
+    },
+    {
+     "en": "Press Moral code",
+     "ar": "الشرف الصحفي"
+    }
+   ]
+  },
+  {
+   "affix": "pro",
+   "kind": "pre",
+   "support_terms": 17,
+   "arabic_correspondences": [
+    {
+     "ar": "برو",
+     "n": 3,
+     "precision": 0.6
+    }
+   ],
+   "examples": [
+    {
+     "en": "Protesters",
+     "ar": "احتجاجيين"
+    },
+    {
+     "en": "Problematic",
+     "ar": "الإشكالية"
+    },
+    {
+     "en": "Protestant",
+     "ar": "البروتستانت"
+    },
+    {
+     "en": "Proletariat",
+     "ar": "البروليتاريا"
+    },
+    {
+     "en": "Promulgation",
+     "ar": "التصديق"
+    },
+    {
+     "en": "Progress",
+     "ar": "التقدم"
+    }
+   ]
+  },
+  {
+   "affix": "socio",
+   "kind": "pre",
+   "support_terms": 5,
+   "arabic_correspondences": [
+    {
+     "ar": "سوسيو",
+     "n": 3,
+     "precision": 1.0
+    }
+   ],
+   "examples": [
+    {
+     "en": "Sociology Of International Relation",
+     "ar": "اجتماع العلاقات الدولية"
+    },
+    {
+     "en": "Sociology Of Politics",
+     "ar": "اجتماع السياسة"
+    },
+    {
+     "en": "Sociological Raductionism",
+     "ar": "الرد السوسيولوجي"
+    },
+    {
+     "en": "Sociogram",
+     "ar": "السوسيوجرام"
+    },
+    {
+     "en": "Sociometric Test",
+     "ar": "سوسيومترى / أنظر اختبار سوسيومترى"
+    }
+   ]
+  },
+  {
+   "affix": "uni",
+   "kind": "pre",
+   "support_terms": 13,
+   "arabic_correspondences": [
+    {
+     "ar": "المتحد",
+     "n": 8,
+     "precision": 0.47
+    },
+    {
+     "ar": "لمتحدة",
+     "n": 8,
+     "precision": 0.47
+    },
+    {
+     "ar": "أممالم",
+     "n": 7,
+     "precision": 0.44
+    },
+    {
+     "ar": "ممالمت",
+     "n": 7,
+     "precision": 0.47
+    },
+    {
+     "ar": "مالمتح",
+     "n": 7,
+     "precision": 0.44
+    },
+    {
+     "ar": "لأممال",
+     "n": 7,
+     "precision": 0.44
+    }
+   ],
+   "examples": [
+    {
+     "en": "United Nations",
+     "ar": "الأمم المتحدة"
+    },
+    {
+     "en": "Uniformalisation",
+     "ar": "التنميط"
+    },
+    {
+     "en": "Unifisation",
+     "ar": "التوحيد"
+    },
+    {
+     "en": "United Nations Childern,s Fund (UNICEF)",
+     "ar": "صندوق الطفولة التابع للأمم المتحدة"
+    },
+    {
+     "en": "Uniting For Peace Resolution",
+     "ar": "قرار الاتحاد من أجل السلام"
+    },
+    {
+     "en": "United Nations High Commissioner For Human Right (UNHCHR )",
+     "ar": "مفوض سام لحقوق الإنسان بالأمم المتحدة"
+    }
+   ]
+  }
+ ],
+ "C_suffix_rules": [
+  {
+   "affix": "ology",
+   "kind": "suf",
+   "support_terms": 9,
+   "arabic_correspondences": [
+    {
+     "ar": "ولوجي",
+     "n": 3,
+     "precision": 0.43
+    }
+   ],
+   "examples": [
+    {
+     "en": "Ethnology",
+     "ar": "الأثينية"
+    },
+    {
+     "en": "Sociology Of International Relation",
+     "ar": "اجتماع العلاقات الدولية"
+    },
+    {
+     "en": "Sociology Of Politics",
+     "ar": "اجتماع السياسة"
+    },
+    {
+     "en": "Political Sociology",
+     "ar": "اجتماع سياسي"
+    },
+    {
+     "en": "Anthropology",
+     "ar": "الأنثروبولوجي"
+    },
+    {
+     "en": "Ideology",
+     "ar": "أيدلوجية"
+    }
+   ]
+  },
+  {
+   "affix": "ics",
+   "kind": "suf",
+   "support_terms": 22,
+   "arabic_correspondences": [
+    {
+     "ar": "لسياسة",
+     "n": 4,
+     "precision": 0.5
+    },
+    {
+     "ar": "لاقيات",
+     "n": 4,
+     "precision": 1.0
+    },
+    {
+     "ar": "خلاقيا",
+     "n": 4,
+     "precision": 1.0
+    },
+    {
+     "ar": "أخلاقي",
+     "n": 4,
+     "precision": 0.67
+    },
+    {
+     "ar": "ياتالإ",
+     "n": 3,
+     "precision": 1.0
+    },
+    {
+     "ar": "سياسةا",
+     "n": 3,
+     "precision": 0.6
+    }
+   ],
+   "examples": [
+    {
+     "en": "Sociology Of Politics",
+     "ar": "اجتماع السياسة"
+    },
+    {
+     "en": "Ethics",
+     "ar": "الأخلاق"
+    },
+    {
+     "en": "Media-Ethics",
+     "ar": "أخلاقيات الإعلام"
+    },
+    {
+     "en": "Info-Ethics",
+     "ar": "أخلاقيات عصر المعلومات"
+    },
+    {
+     "en": "Internet-Ethics",
+     "ar": "أخلاقيات الإنترنت"
+    },
+    {
+     "en": "Context Of American Politics",
+     "ar": "بيئة السياسة الأ مريكية"
+    }
+   ]
+  },
+  {
+   "affix": "sion",
+   "kind": "suf",
+   "support_terms": 25,
+   "arabic_correspondences": [
+    {
+     "ar": "يفزيون",
+     "n": 5,
+     "precision": 0.56
+    },
+    {
+     "ar": "تليفزي",
+     "n": 5,
+     "precision": 0.56
+    },
+    {
+     "ar": "ليفزيو",
+     "n": 5,
+     "precision": 0.56
+    },
+    {
+     "ar": "القرار",
+     "n": 4,
+     "precision": 0.67
+    },
+    {
+     "ar": "ناع",
+     "n": 5,
+     "precision": 0.71
+    }
+   ],
+   "examples": [
+    {
+     "en": "Persuasion",
+     "ar": "الإقناع"
+    },
+    {
+     "en": "Third Dimension Of Power",
+     "ar": "البعد الثالث للقوة"
+    },
+    {
+     "en": "Political Succession",
+     "ar": "التتابع السياسي"
+    },
+    {
+     "en": "Conversion Process",
+     "ar": "التحويل"
+    },
+    {
+     "en": "Cession",
+     "ar": "تنازل"
+    },
+    {
+     "en": "Freedom Of Expression",
+     "ar": "حرية التعبير"
+    }
+   ]
+  },
+  {
+   "affix": "ment",
+   "kind": "suf",
+   "support_terms": 59,
+   "arabic_correspondences": [
+    {
+     "ar": "لتن",
+     "n": 10,
+     "precision": 0.43
+    },
+    {
+     "ar": "تنم",
+     "n": 10,
+     "precision": 0.71
+    }
+   ],
+   "examples": [
+    {
+     "en": "Camp Devid Agreement",
+     "ar": "اتفاقية كامب ديفيد"
+    },
+    {
+     "en": "Containment Policy",
+     "ar": "الاحتواء) سياسة ("
+    },
+    {
+     "en": "Crisis-Management",
+     "ar": "إدارة الأزمات"
+    },
+    {
+     "en": "Goal Attainment",
+     "ar": "إنجاز الأهداف"
+    },
+    {
+     "en": "UNEP United Nations Environment Programme",
+     "ar": "برنامج الأمم المتحدة للبيئة"
+    },
+    {
+     "en": "UNDP United Nations Development Programe",
+     "ar": "برنامج الأمم المتحدة للتنمية"
+    }
+   ]
+  },
+  {
+   "affix": "ness",
+   "kind": "suf",
+   "support_terms": 14,
+   "arabic_correspondences": [
+    {
+     "ar": "الوعي",
+     "n": 3,
+     "precision": 1.0
+    },
+    {
+     "ar": "عيا",
+     "n": 3,
+     "precision": 0.5
+    }
+   ],
+   "examples": [
+    {
+     "en": "Reason Ableness",
+     "ar": "الحصافة"
+    },
+    {
+     "en": "Collective Consciousness",
+     "ar": "شعور جمعي"
+    },
+    {
+     "en": "Policy Ineffectiveness Theorm",
+     "ar": "عدمعدم فاعلية السياسة"
+    },
+    {
+     "en": "U. N. Effectiyeness",
+     "ar": "فعالية المنظمة الدولية"
+    },
+    {
+     "en": "Powerlessness",
+     "ar": "مشاعر انعدام القوة"
+    },
+    {
+     "en": "Business Organization",
+     "ar": "منظمة عمل"
+    }
+   ]
+  },
+  {
+   "affix": "cracy",
+   "kind": "suf",
+   "support_terms": 13,
+   "arabic_correspondences": [
+    {
+     "ar": "قراطية",
+     "n": 13,
+     "precision": 0.76
+    },
+    {
+     "ar": "ديمقرا",
+     "n": 9,
+     "precision": 1.0
+    },
+    {
+     "ar": "يمقراط",
+     "n": 9,
+     "precision": 1.0
+    },
+    {
+     "ar": "مقراطي",
+     "n": 9,
+     "precision": 1.0
+    },
+    {
+     "ar": "الديمق",
+     "n": 6,
+     "precision": 1.0
+    },
+    {
+     "ar": "لديمقر",
+     "n": 6,
+     "precision": 1.0
+    }
+   ],
+   "examples": [
+    {
+     "en": "Autocracy",
+     "ar": "أتوقراطية"
+    },
+    {
+     "en": "Bureaucracy",
+     "ar": "بيروقراطية"
+    },
+    {
+     "en": "Theocracy",
+     "ar": "ثيوقراطية"
+    },
+    {
+     "en": "Theocracy",
+     "ar": "الحكومة الدينية / أنظر ثيوقراطية"
+    },
+    {
+     "en": "Democracy",
+     "ar": "الديمقراطية"
+    },
+    {
+     "en": "Concordant Democracy",
+     "ar": "الديمقر اطية الاتفاقية"
+    }
+   ]
+  },
+  {
+   "affix": "ization",
+   "kind": "suf",
+   "support_terms": 49,
+   "arabic_correspondences": [
+    {
+     "ar": "منظمةا",
+     "n": 18,
+     "precision": 0.78
+    },
+    {
+     "ar": "نظمةال",
+     "n": 18,
+     "precision": 0.75
+    },
+    {
+     "ar": "ةلل",
+     "n": 8,
+     "precision": 0.4
+    }
+   ],
+   "examples": [
+    {
+     "en": "Polarization",
+     "ar": "استقطاب"
+    },
+    {
+     "en": "Africanization",
+     "ar": "الأفرقة"
+    },
+    {
+     "en": "Nationalization",
+     "ar": "التأميم"
+    },
+    {
+     "en": "Modernization",
+     "ar": "التحديث"
+    },
+    {
+     "en": "Narmalization",
+     "ar": "التطبيع"
+    },
+    {
+     "en": "Political Mobilization",
+     "ar": "التعبئة السياسية"
+    }
+   ]
+  },
+  {
+   "affix": "al",
+   "kind": "suf",
+   "support_terms": 232,
+   "arabic_correspondences": [
+    {
+     "ar": "السياس",
+     "n": 45,
+     "precision": 0.83
+    },
+    {
+     "ar": "لسياسي",
+     "n": 43,
+     "precision": 0.9
+    }
+   ],
+   "examples": [
+    {
+     "en": "Paternalism Liberal",
+     "ar": "الأبوية الليبرالية"
+    },
+    {
+     "en": "Liberal",
+     "ar": "الاتجاهات الليبرالية"
+    },
+    {
+     "en": "Political Communication",
+     "ar": "الاتصال السياسي"
+    },
+    {
+     "en": "Sociology Of International Relation",
+     "ar": "اجتماع العلاقات الدولية"
+    },
+    {
+     "en": "Political Sociology",
+     "ar": "اجتماع سياسي"
+    },
+    {
+     "en": "Political Feelings",
+     "ar": "أحاسيس ومشاعر سياسية"
+    }
+   ]
+  },
+  {
+   "affix": "ary",
+   "kind": "suf",
+   "support_terms": 17,
+   "arabic_correspondences": [
+    {
+     "ar": "قأدبي",
+     "n": 3,
+     "precision": 1.0
+    },
+    {
+     "ar": "سكر",
+     "n": 3,
+     "precision": 0.6
+    }
+   ],
+   "examples": [
+    {
+     "en": "Military Juntas",
+     "ar": "الأنظمة العسكرية"
+    },
+    {
+     "en": "Parliamentary Groups",
+     "ar": "الجماعة أو الهيئة البرلمانية"
+    },
+    {
+     "en": "Parliamentary Government",
+     "ar": "الحكم البرلماني"
+    },
+    {
+     "en": "(IMF) International Monetary Fund",
+     "ar": "صندوق النقد الدولي"
+    },
+    {
+     "en": "Estuary",
+     "ar": "لسان"
+    },
+    {
+     "en": "Contemporary",
+     "ar": "المعاصرة"
+    }
+   ]
+  },
+  {
+   "affix": "ance",
+   "kind": "suf",
+   "support_terms": 19,
+   "arabic_correspondences": [
+    {
+     "ar": "توازن",
+     "n": 3,
+     "precision": 0.75
+    }
+   ],
+   "examples": [
+    {
+     "en": "Alliance Israelite Universelle",
+     "ar": "الاتحاد اليهودي العالمي"
+    },
+    {
+     "en": "Dependance",
+     "ar": "التبعية"
+    },
+    {
+     "en": "Performance Evaluation",
+     "ar": "تقييم الأداء"
+    },
+    {
+     "en": "Balance Of Power",
+     "ar": "توازن القوى"
+    },
+    {
+     "en": "Alliance Israelite Universelle",
+     "ar": "جمعية يانس العالمية"
+    },
+    {
+     "en": "Renaissance",
+     "ar": "عهد النهضة"
+    }
+   ]
+  },
+  {
+   "affix": "dom",
+   "kind": "suf",
+   "support_terms": 12,
+   "arabic_correspondences": [
+    {
+     "ar": "حريةال",
+     "n": 8,
+     "precision": 0.89
+    },
+    {
+     "ar": "البحار",
+     "n": 3,
+     "precision": 0.6
+    },
+    {
+     "ar": "يالبحا",
+     "n": 3,
+     "precision": 0.75
+    },
+    {
+     "ar": "ريةالص",
+     "n": 3,
+     "precision": 0.75
+    }
+   ],
+   "examples": [
+    {
+     "en": "Freedom Of The High Seas",
+     "ar": "حرية أعالي البحار"
+    },
+    {
+     "en": "Freedom Of Expression",
+     "ar": "حرية التعبير"
+    },
+    {
+     "en": "Freedom With Leadership",
+     "ar": "الحرية ذات الهدف"
+    },
+    {
+     "en": "Press Freedom",
+     "ar": "حرية الصحافة"
+    },
+    {
+     "en": "Freedom Of Fishing",
+     "ar": "حرية الصيد"
+    },
+    {
+     "en": "Freedom Of Flay Over The High Seas",
+     "ar": "حرية الطيران فوق أعالي البحار"
+    }
+   ]
+  }
+ ],
+ "D_genitive_of": {
+  "total_of_terms": 92,
+  "with_definite_second_member": 78,
+  "examples": [
+   {
+    "en": "Sociology Of International Relation",
+    "ar": "اجتماع العلاقات الدولية"
+   },
+   {
+    "en": "Sociology Of Politics",
+    "ar": "اجتماع السياسة"
+   },
+   {
+    "en": "State Of Siege",
+    "ar": "أحكام عرفية"
+   },
+   {
+    "en": "Tool Of New – Colonialism",
+    "ar": "أداة الاستعمار الجديد"
+   },
+   {
+    "en": "Presistence Of Aggregates",
+    "ar": "استمرار المجتمع"
+   },
+   {
+    "en": "The Israelis Of Africa",
+    "ar": "إسرائيل أفريقيا"
+   },
+   {
+    "en": "Bill Of Human Rights",
+    "ar": "إعلان حقوق الإنسان"
+   },
+   {
+    "en": "International Bill Of Human Rights / The Universal Declaration Of Human Rights",
+    "ar": "الإعلان العالمي لحقوق الإنسان"
+   }
+  ]
+ },
+ "E_article_policy": {
+  "ar_terms_starting_with_AL": 599,
+  "total": 1600,
+  "en_terms_with_the": 27,
+  "ratio_ar_definite": 0.374
+ },
+ "F_acronyms": {
+  "total": 71,
+  "acronym_transliterated": 6,
+  "acronym_kept_latin": 0,
+  "fully_translated": 65,
+  "examples_transliterated": [
+   {
+    "en": "ASEAN",
+    "ar": "آسيان"
+   },
+   {
+    "en": "TRIPS Trade Related Aspects Of Intelectual Property Right",
+    "ar": "التريبس"
+   },
+   {
+    "en": "NATO",
+    "ar": "حلف الناتو"
+   },
+   {
+    "en": "WARSOWN Part",
+    "ar": "حلف وارسو"
+   },
+   {
+    "en": "COMESA",
+    "ar": "الكوميسا))"
+   },
+   {
+    "en": "NATO",
+    "ar": "الناتو"
+   }
+  ],
+  "examples_translated": [
+   {
+    "en": "GATT",
+    "ar": "الاتفاقية العامة الخاصة بالتعرفة والتنمية"
+   },
+   {
+    "en": "OAPEC",
+    "ar": "أوابك"
+   },
+   {
+    "en": "(OPEC) Organisation Of Petroleum Exporting Countries",
+    "ar": "أوبك"
+   },
+   {
+    "en": "UNEP United Nations Environment Programme",
+    "ar": "برنامج الأمم المتحدة للبيئة"
+   },
+   {
+    "en": "UNDP United Nations Development Programe",
+    "ar": "برنامج الأمم المتحدة للتنمية"
+   },
+   {
+    "en": "International Bank For Reconstruction And Development (IBRD)",
+    "ar": "البنك الدولي للإنشاء والتعمير"
+   },
+   {
+    "en": "GATT General Agreement Of Tariffs And Trade",
+    "ar": "الجات الجات)) الإتفا قية العامة للتعريفات الجمركية والتجارة ("
+   },
+   {
+    "en": "Gibraltar (GIB )",
+    "ar": "جبل طارق"
+   }
+  ]
+ },
+ "G_nominalization": {
+  "tion_sion_ment_terms": 312,
+  "patterns": {
+   "if3aal": 16,
+   "taf3iil": 97,
+   "other": 199
+  },
+  "examples": {
+   "taf3iil": [
+    {
+     "en": "Communication",
+     "ar": "الاتصال"
+    },
+    {
+     "en": "Political Communication",
+     "ar": "الاتصال السياسي"
+    },
+    {
+     "en": "Communication Satellite",
+     "ar": "الاتصال عبر الأقمار الصناعية"
+    },
+    {
+     "en": "Camp Devid Agreement",
+     "ar": "اتفاقية كامب ديفيد"
+    },
+    {
+     "en": "Participation",
+     "ar": "التأييد والرضا الشعبي"
+    }
+   ],
+   "if3aal": [
+    {
+     "en": "Crisis-Management",
+     "ar": "إدارة الأزمات"
+    },
+    {
+     "en": "Peoples Administration",
+     "ar": "إدارة الشعب"
+    },
+    {
+     "en": "International Bill Of Human Rights / The Universal Declaration Of Human Rights",
+     "ar": "الإعلان العالمي لحقوق الإنسان"
+    },
+    {
+     "en": "Persuasion",
+     "ar": "الإقناع"
+    },
+    {
+     "en": "Political Inspiration",
+     "ar": "الإلهام السياسي"
+    }
+   ]
+  }
+ }
+}

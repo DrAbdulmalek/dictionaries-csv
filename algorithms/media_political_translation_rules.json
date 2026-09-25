@@ -1,0 +1,406 @@
+{
+  "meta": {
+    "title_en": "English→Arabic Translation Rule Algorithms — mined from two dictionaries",
+    "title_ar": "خوارزميات قواعد الترجمة الإنجليزية→العربية — مستخرجة آلياً من معجمين",
+    "sources": [
+      "الموسوعة الميسرة للمصطلحات السياسية — د. إسماعيل عبد الفتاح (508 صفحات، 1035 مدخلاً، 1007 تعريفاً)",
+      "معجم مصطلحات الإعلام — مجمع اللغة العربية بالقاهرة (121 صفحة، 570 مصطلحاً)"
+    ],
+    "corpus": {
+      "term_pairs": 1600,
+      "political_pairs": 1030,
+      "media_pairs": 570,
+      "bilingual_phrase_sentence_pairs": 434,
+      "arabic_definitions": 1007
+    },
+    "generated": "2026-09-25",
+    "method": "استخراج إحصائي من المدونة المتوازية (affix mining بدعم ودقة)، تصنيف التعريب بمحاكاة الرومنة، ثم تقعيد يدوي مدعوم بالشواهد",
+    "companion_files": [
+      "algorithms/media_political_translation_rules.md",
+      "algorithms/media_political_rules_mined_evidence.json",
+      "scripts/translation_rules_engine.py"
+    ]
+  },
+  "rules": [
+    {
+      "id": "R01_dictionary_first",
+      "name_en": "Dictionary-First Lookup",
+      "name_ar": "البحث المعجمي أولاً",
+      "category": "lexical",
+      "algorithm": [
+        "1. normalize(en_term): lowercase, collapse spaces, strip punctuation edges",
+        "2. IF exact match in bilingual lexicon (1600 pairs) RETURN stored translation",
+        "3. IF fuzzy match (skeleton similarity ≥ 0.9) RETURN candidate with flag",
+        "4. ELSE continue to decomposition rules R03..R10"
+      ],
+      "support": 1600,
+      "examples": [
+        {"en": "Political Sociology", "ar": "اجتماع سياسي"},
+        {"en": "content analysis", "ar": "تحليل المضمون"},
+        {"en": "Public Opinion", "ar": "الرأي العام"}
+      ]
+    },
+    {
+      "id": "R02_definite_article_policy",
+      "name_en": "Definite Article Policy (ال)",
+      "name_ar": "سياسة أداة التعريف (ال)",
+      "category": "structural",
+      "rule": "English generic terms carry no article, but 37.4% of established Arabic equivalents begin with ال (vs 1.7% English 'the'). When generating a new term, prefer definite ال for institutional/abstract heads, bare form for mass/count generics.",
+      "algorithm": [
+        "1. IF en starts with 'the' → ar keeps ال",
+        "2. ELIF head noun ∈ institutional class (نظام، منظمة، مجلس، اتحاد، السلطة...) → prefix ال",
+        "3. ELIF term is generic mass noun (رأي، خبر، إعلان...) → decide by lexicon precedent",
+        "4. Apply ال to head ONLY; adjectives in the NP agree (R13)"
+      ],
+      "support": 599,
+      "precision": 0.374,
+      "examples": [
+        {"en": "political street", "ar": "الشارع السياسي"},
+        {"en": "Public Opinion", "ar": "الرأي العام"},
+        {"en": "editorial board", "ar": "مجلس التحرير"}
+      ]
+    },
+    {
+      "id": "R03_adjective_postposition",
+      "name_en": "Adjective Inversion (pre-nominal → post-nominal)",
+      "name_ar": "قلب موقع الصفة (قبل الاسم ← بعد الاسم)",
+      "category": "structural",
+      "rule": "English 'Adj + N' maps to Arabic 'N + الAdj' with definite article on BOTH when the NP is definite, and agreement in gender/number.",
+      "algorithm": [
+        "1. parse en as [MODS...] [HEAD]",
+        "2. head_ar = lexicon(HEAD)",
+        "3. FOR each adjective mod (right-to-left): mod_ar = ADJ_TABLE[mod]",
+        "4. ar = head_ar + ' ' + ال?+mod_ar (ال attaches iff NP is definite)",
+        "5. gender: if head_ar ends with ة → adjective takes ة (السياسية)"
+      ],
+      "support": 19,
+      "evidence_note": "19 auto-detected inversions (transliteration-anchored) + mined adjective table: political→السياسي/السياسية (n=36), international→الدولي/الدولية (n=14), national→القومي/الوطنية (n=14), public→العام/العامة (n=6), civil→المدني (n=3), liberal→الليبرالية (n=3), social→الاجتماعي, traditional→التقليدية, new→الجديد",
+      "examples": [
+        {"en": "Central America", "ar": "أمريكا الوسطى"},
+        {"en": "Western Sahara", "ar": "الصحراء الغربية"},
+        {"en": "Gold Jubilee", "ar": "اليوبيل الذهبي"},
+        {"en": "pay television", "ar": "التليفزيون المدفوع"},
+        {"en": "Political Parties", "ar": "الأحزاب السياسية"},
+        {"en": "commercial television", "ar": "تليفزيون تجاري"}
+      ]
+    },
+    {
+      "id": "R04_genitive_of_to_idaafa",
+      "name_en": "'of' Elision → Idaafa (إضافة)",
+      "name_ar": "حذف حرف الجر of وتركيب الإضافة",
+      "category": "structural",
+      "rule": "English 'N1 of N2' becomes Arabic idaafa 'N1 N2' with NO preposition (لا يوجد مقابل لـ of); N2 usually takes ال when definite/generic-institutional (78/92 = 85% of mined 'of' terms have definite second member).",
+      "algorithm": [
+        "1. split en on ' of '",
+        "2. ar = lexicon(N1) + ' ' + [ال]lexicon(N2)",
+        "3. N1 stays INDEFINITE (no ال) inside idaafa — never 'التركيز الملكية'",
+        "4. chains: 'A of B of C' → 'A B C' right-to-left idaafa nesting",
+        "5. if N2 is a pronoun → use possessive suffix (حقوقه)"
+      ],
+      "support": 92,
+      "precision": 0.85,
+      "examples": [
+        {"en": "Sociology Of Politics", "ar": "اجتماع السياسة"},
+        {"en": "Concentration Of Ownership", "ar": "تركيز الملكية"},
+        {"en": "Bill Of Human Rights", "ar": "إعلان حقوق الإنسان"},
+        {"en": "Freedom Of The High Seas", "ar": "حرية أعالي البحار"}
+      ]
+    },
+    {
+      "id": "R05_compound_noun_reversal",
+      "name_en": "N+N Compound Reversal",
+      "name_ar": "قلب المركّب الاسمي (N N)",
+      "category": "structural",
+      "rule": "English attributive compounds 'N1 N2' reverse to Arabic 'N2 (ال)N1' as idaafa or nisba adjective: camera angle → زاوية الكاميرا; news page → صفحة الأخبار.",
+      "algorithm": [
+        "1. parse [MOD-NOUN] [HEAD-NOUN]",
+        "2. head_ar = lexicon(HEAD)",
+        "3. mod_ar = lexicon(MOD)",
+        "4. IF mod is concrete noun → ar = head_ar + ' ' + ال + mod_ar (idaafa)",
+        "5. IF mod is abstract/mass → prefer nisba adjective (إذاعة → إذاعية)",
+        "6. plural heads keep broken plural: أخبار، صحف، أحزاب"
+      ],
+      "support": 210,
+      "examples": [
+        {"en": "camera angle", "ar": "زاوية الكاميرا"},
+        {"en": "press gallery", "ar": "شرفة الصحافة"},
+        {"en": "news page", "ar": "صفحة الأخبار"},
+        {"en": "broadcast network", "ar": "شبكة إذاعية"},
+        {"en": "camera movement", "ar": "حركة الكاميرا"}
+      ]
+    },
+    {
+      "id": "R06_prefix_correspondences",
+      "name_en": "Prefix → Arabic Morpheme Table",
+      "name_ar": "جدول السوابق الإنجليزية ومقابلاتها",
+      "category": "morphological",
+      "table": {
+        "inter-": {"ar": ["الدولي", "بين", "التفاعل"], "support": 28, "ex": ["International Détente → الانفراج الدولي", "interactive coverage → تغطية تفاعلية"]},
+        "mass": {"ar": ["جماهير", "الجماهيري"], "support": 10, "precision": 0.75, "ex": ["mass culture → ثقافة جماهيرية", "mass behavior → سلوك جماهيري"]},
+        "national": {"ar": ["القومي", "الوطني"], "support": 15, "ex": ["National Minorities → الأقليات القومية", "national consciousness → وعي قومي"]},
+        "uni-/united": {"ar": ["المتحد", "المتحدة"], "support": 13, "ex": ["United Nations → الأمم المتحدة"]},
+        "multi-": {"ar": ["متعدد", "متعددة"], "support": 7, "precision": 0.75, "ex": ["Multinational → متعددة الجنسية", "multimedia → وسائط متعددة"]},
+        "mis-": {"ar": ["خاطئ", "سوء", "تضليل"], "support": 7, "precision": 1.0, "ex": ["misquote → اقتباس خاطئ", "misinformation → تضليل إعلامي", "misreport → تقرير خاطئ"]},
+        "global": {"ar": ["كوكبي", "عالمي", "عولمة"], "support": 6, "precision": 1.0, "ex": ["global media → وسائل إعلام كوكبية"]},
+        "local": {"ar": ["محلي", "محلية"], "support": 4, "precision": 1.0, "ex": ["local papers → صحف محلية", "localism → عولمة محلية"]},
+        "anti-": {"ar": ["مضاد", "مناهضة", "مضادة"], "ex": ["anti propaganda → دعاية مضادة"]},
+        "self-": {"ar": ["الذاتي", "ذاتي"], "ex": ["ego involvement → الاندماج الذاتي"]},
+        "sub-": {"ar": ["فرعي", "تحت"], "ex": ["sub-editor → محرر فرعي"]},
+        "trans-": {"ar": ["عابر", "تحويل", "عبر"], "ex": ["transnational → عابر للقومية"]},
+        "re-": {"ar": ["إعادة", "مُعاد"], "ex": ["exchange essay → مقال معاد نشره"]},
+        "co-": {"ar": ["مشترك", "التعاون"], "ex": ["co-staring → بالاشتراك مع"]},
+        "pre-": {"ar": ["تمهيدي", "قبل", "مسبق"], "ex": ["preview → تنويه (عرض قادم)"]},
+        "post-": {"ar": ["بعد", "لاحق"], "ex": []},
+        "non-": {"ar": ["غير", "لا"], "ex": ["informal balance → توازن غير شكلي"]},
+        "over-/under-": {"ar": ["مفرط", "ناقص", "تحت"], "ex": []},
+        "semi-": {"ar": ["شبه", "نصف"], "ex": ["half-yearly → نصف سنوي"]},
+        "socio-": {"ar": ["اجتماعي", "سوسيو"], "support": 5, "precision": 1.0, "ex": ["socio-political → اجتماعي سياسي"]},
+        "electro-/e-": {"ar": ["كهربائي", "إلكتروني"], "ex": ["electronic democracy → ديمقراطية إلكترونية"]}
+      },
+      "algorithm": [
+        "1. match longest prefix p of en term against table",
+        "2. stem = en − p; stem_ar = lexicon(stem) or recurse",
+        "3. IF p maps to adjective (inter/national/global/local...) → attach as POST-nominal adjective (R03)",
+        "4. IF p maps to nominal particle (anti/co/re/sub...) → attach BEFORE stem (مضاد + X, إعادة + X)",
+        "5. gender agreement on the particle per stem gender"
+      ]
+    },
+    {
+      "id": "R07_suffix_correspondences",
+      "name_en": "Suffix → Arabic Pattern Table",
+      "name_ar": "جدول اللواحق الإنجليزية والأوزان العربية",
+      "category": "morphological",
+      "table": {
+        "-cracy": {"ar": ["قراطية", "ديمقراطي"], "support": 13, "precision": 0.76, "ex": ["Autocracy → أتوقراطية", "democracy liberal → ديمقراطية ليبرالية"]},
+        "-al/-ial": {"ar": ["ـي (نسبة)", "السياسي", "التحريري"], "support": 232, "precision": 0.83, "ex": ["political → السياسي", "editorial → افتتاحية/تحريري", "financial → مالي"]},
+        "-dom": {"ar": ["حرية", "ـية"], "support": 12, "precision": 0.89, "ex": ["freedom of speech → حرية التعبير"]},
+        "-ness": {"ar": ["ـية", "وعي"], "support": 14, "ex": ["consciousness → وعي", "newness → الجِدَّة", "nearness → القرب"]},
+        "-ology": {"ar": ["علم الـ...", "ـولوجيا"], "support": 9, "ex": ["Anthropology → علم الإنسان/الأنثروبولوجي", "Ethnology → الأثينية"]},
+        "-ics": {"ar": ["ـيات", "علم"], "support": 22, "ex": ["ethics → أخلاقيات", "stylistics → الأسلوبية", "politics → السياسة"]},
+        "-ism": {"ar": ["ـية", "مذهب"], "ex": ["pluralism → تعددية", "futurism → المستقبلية", "macluhanism → الماكلوهانية"]},
+        "-ist": {"ar": ["ـي", "من أنصار"], "ex": ["Globalist → الرأي الكوني", "dramatist → مؤلف درامي"]},
+        "-tion/-sion": {"ar": ["مصدر (إفعال/تفعيل/فعال)"], "support": 312, "ex": ["persuasion → إقناع", "modulation → تعديل", "justification → ضبط الأسطر"]},
+        "-ization": {"ar": ["فعلة", "إفعال", "تحويل إلى"], "support": 49, "ex": ["americanization → أمركة", "privatization → خصخصة", "polarization → استقطاب"]},
+        "-ity": {"ar": ["ـية"], "ex": ["credibility → مصداقية", "objectivity → موضوعية", "readability → انقرائية"]},
+        "-ive": {"ar": ["ـي", "فعال"], "ex": ["interactive → تفاعلية", "suggestive → إيحائية"]},
+        "-ery/-ary": {"ar": ["مكان/ـية"], "ex": ["press gallery → شرفة الصحافة"]},
+        "-graph/-graphy": {"ar": ["ـغراف", "كتابة", "رسم"], "ex": ["telegraph → تلغراف", "photographer → مصور"]},
+        "-phobia": {"ar": ["رهاب", "فوبيا"], "ex": []},
+        "-ship": {"ar": ["عضوية", "ـية"], "ex": []},
+        "-ette/-let": {"ar": ["تصغير (ـيّب/ـة صغيرة)"], "ex": ["booklet → كُتَيِّب"]},
+        "-ee/-er (agent/patient)": {"ar": ["مُستقبِل/مُرسِل patterns"], "ex": ["addressee → المرسل إليه", "messenger → مُرسِل"]}
+      },
+      "algorithm": [
+        "1. match longest suffix s of the HEAD word",
+        "2. base = word − s; base_ar = lexicon(base) or transliterate",
+        "3. apply Arabic pattern: -ization → وزن فعلة/إفعال on base root; -ity/-ics → base + ية/يات; -cracy → base + قراطية (transliterated base)",
+        "4. verify gender ending ة propagation to adjectives"
+      ]
+    },
+    {
+      "id": "R08_transliteration_proper_nouns",
+      "name_en": "Proper-Noun Transliteration (Phonemic)",
+      "name_ar": "تعريب الأعلام بالنقل الصوتي",
+      "category": "phonetic",
+      "rule": "91/1600 terms (5.7%) are phonemic loans; proper nouns, brandisms and neologisms transliterate rather than translate.",
+      "algorithm": [
+        "1. detect: proper noun OR no lexicon entry OR source-culture concept",
+        "2. syllabize English; map phonemes: a→ا/أ, ā→آ, b→ب, c/k→ك, ch→تش, d→د, e→ي/إ, f→ف, g→ج (غ in French loans), h→ه, i→ي/إ, j→ج, l→ل, m→م, n→ن, o→و/أو, p→ب, q→ق, r→ر, s→س, sh→ش, t→ت, th→ث/ت, u→و, v→ف, w→و, x→كس, y→ي, z→ز",
+        "3. attach ال for institutions/places (الناتو، البوندستاج)",
+        "4. feminine ة for -a endings (يوتوبيا stays; أنجلو سكسونية)",
+        "5. DO NOT transliterate if an established translation exists (UNESCO→يونسكو but IMF→صندوق النقد الدولي)"
+      ],
+      "support": 91,
+      "examples": [
+        {"en": "ASEAN", "ar": "آسيان"},
+        {"en": "NATO", "ar": "حلف الناتو"},
+        {"en": "Bundestag", "ar": "البوندستاج"},
+        {"en": "Kulak", "ar": "الكولاك"},
+        {"en": "Boer", "ar": "البوير"},
+        {"en": "Utopia", "ar": "يوتوبيا"},
+        {"en": "cinemascope", "ar": "سينما سكوب"},
+        {"en": "pica", "ar": "بيكا"}
+      ]
+    },
+    {
+      "id": "R09_acronym_strategy",
+      "name_en": "Acronym Decision Tree",
+      "name_ar": "شجرة قرار الاختصارات",
+      "category": "lexical",
+      "statistics": {"total": 71, "fully_translated": 66, "transliterated": 5, "kept_latin": 0},
+      "algorithm": [
+        "1. expand acronym (lexicon of organizations)",
+        "2. IF organization with descriptive name → translate expansion: GATT → الاتفاقية العامة للتعريفات والتجارة",
+        "3. IF lexicalized in Arabic media → transliterate: الناتو، الأوابك، الكوميسا، التريبس",
+        "4. OPTIONALLY append original acronym in parentheses: صندوق النقد الدولي (IMF)",
+        "5. NEVER keep bare Latin acronym alone in formal Arabic text (0/71 in corpus)"
+      ],
+      "support": 71,
+      "examples": [
+        {"en": "GATT", "ar": "الاتفاقية العامة الخاصة بالتعرفة والتنمية"},
+        {"en": "OAPEC", "ar": "أوابك"},
+        {"en": "(IMF) International Monetary Fund", "ar": "صندوق النقد الدولي"},
+        {"en": "COMESA", "ar": "الكوميسا"},
+        {"en": "TRIPS", "ar": "التريبس"}
+      ]
+    },
+    {
+      "id": "R10_nominalization_masdar",
+      "name_en": "Nominalization → Masdar Patterns",
+      "name_ar": "الأسماء المشتقة ← أوزان المصدر",
+      "category": "morphological",
+      "statistics": {"tion_sion_ment_terms": 312, "if3aal": 16, "taf3iil": 97, "other_patterns": 199},
+      "algorithm": [
+        "1. English action noun (V+tion/sion/ment) → Arabic masdar of the equivalent verb",
+        "2. pattern choice: إفعال (إقناع، إعلان، إقناع), تفعيل (تحميل→تفعيل، تنظيم), فَعْل (ضبط، منع), فِعال (اتصال، انتقال)",
+        "3. IF verb is ruba3i (4-radical) → تفعيل; IF transitive causative → إفعال",
+        "4. gerund phrases: 'V-ing + object' → masdar + idaafa (Goal Attainment → إنجاز الأهداف)"
+      ],
+      "support": 312,
+      "examples": [
+        {"en": "Goal Attainment", "ar": "إنجاز الأهداف"},
+        {"en": "persuasion", "ar": "إقناع"},
+        {"en": "encoding", "ar": "تشفير"},
+        {"en": "documentation", "ar": "توثيق"},
+        {"en": "cultivation", "ar": "تثقيف"}
+      ]
+    },
+    {
+      "id": "R11_agent_noun_m_pattern",
+      "name_en": "Agent Nouns → مـ Active Participle",
+      "name_ar": "اسم الفاعل على وزن مـفْعِل/فاعِل",
+      "category": "morphological",
+      "rule": "True agent nouns (-er/-or professions) map overwhelmingly to Arabic active participles: مُخْرِج، مُحرر، مُصمم، مُراسل، مُنتج، مُعلن، مُصفقون.",
+      "algorithm": [
+        "1. IF en = agent noun (person performing V)",
+        "2. ar = active participle of chosen verb: أخرج→مُخْرِج, حرر→مُحرر, صمم→مُصمم, راسل→مُراسل",
+        "3. plural agents → sound masculine plural ون (مصفقون، صحفيون) or broken (صحف→صحفيين)",
+        "4. non-agent -er (wider senses) → use صفة or مصدر instead"
+      ],
+      "support": 31,
+      "precision_note": "31/87 of raw -er/-or/-ist hits start with م; for true professions the rate approaches 100% (raw count includes non-agent words like 'charter')",
+      "examples": [
+        {"en": "director", "ar": "مُخْرِج"},
+        {"en": "designer", "ar": "مصمِّم"},
+        {"en": "advertiser", "ar": "مُعْلِن"},
+        {"en": "correspondent abroad", "ar": "مراسل خارجي"},
+        {"en": "The Crisis Manager", "ar": "مدير الأزمة"},
+        {"en": "rewriter", "ar": "مُراجع صياغة"}
+      ]
+    },
+    {
+      "id": "R12_plural_strategy",
+      "name_en": "Plural Head Translation",
+      "name_ar": "ترجمة رؤوس الجمع",
+      "category": "morphological",
+      "algorithm": [
+        "1. English plural head → Arabic broken plural preferred for concretes: paper→صحف, party→أحزاب, news→أخبار",
+        "2. sound plurals for professions/agents: صحفيون، مصممون",
+        "3. Arabic plural of idaafa head keeps tanwin-free form: أطرٌ إخبارية",
+        "4. singulative ة when English mass noun is counted: news item→خبر"
+      ],
+      "support": 120,
+      "examples": [
+        {"en": "Political Parties", "ar": "الأحزاب السياسية"},
+        {"en": "leadership papers", "ar": "صُحف كبرى"},
+        {"en": "news frameworks", "ar": "أطرٌ إخبارية"},
+        {"en": "decision makers", "ar": "صُنَّاع القرار"}
+      ]
+    },
+    {
+      "id": "R13_gender_number_agreement",
+      "name_en": "Gender & Number Agreement",
+      "name_ar": "المطابقة في النوع والعدد",
+      "category": "structural",
+      "algorithm": [
+        "1. determine gender of Arabic head (ة/أسماء مؤنثة → feminine)",
+        "2. ALL post-nominal adjectives take matching ة: تغطية إخبارية، وكالة إعلانية، شبكة إذاعية",
+        "3. non-human plurals take feminine-singular adjectives: الأحبار → المغلفة? (صحف مالية NOT صحف ماليون)",
+        "4. duals for paired items: عمودين (double columned)"
+      ],
+      "support": 400,
+      "examples": [
+        {"en": "advertising agency", "ar": "وكالة إعلانية"},
+        {"en": "news coverage", "ar": "تغطية إخبارية"},
+        {"en": "financial papers", "ar": "صحف مالية"},
+        {"en": "double columned", "ar": "جمع على عمودين"}
+      ]
+    },
+    {
+      "id": "R14_annotation_code_switching",
+      "name_en": "Bilingual Annotation Pattern",
+      "name_ar": "نمط الحاشية الثنائية اللغة (Term (Foreign))",
+      "category": "discourse",
+      "rule": "Arabic expository style in the corpus annotates concepts with the source term in parentheses — 434 mined phrase pairs follow 'العبارة العربية (English)' or inline apposition.",
+      "algorithm": [
+        "1. WHEN introducing a loan or calqued neologism: ar_term (en_term)",
+        "2. WHEN the English is an established equivalent inside a sentence: place immediately after the Arabic phrase",
+        "3. Keep Latin script LTR inside RTL with proper bidi isolation"
+      ],
+      "support": 434,
+      "examples": [
+        {"en": "Stable Equilibrium", "ar": "التوازن"},
+        {"en": "Sociological Reduction Of Politics", "ar": "تصغير سوسيولوجي للسياسة"},
+        {"en": "Direct", "ar": "اتصالا مباشرا"},
+        {"en": "Feedback", "ar": "التغذية الاسترجاعية"}
+      ]
+    },
+    {
+      "id": "R15_domain_consistency",
+      "name_en": "Domain-Consistent Head Rendering",
+      "name_ar": "اطراد ترجمة الرأس داخل المجال",
+      "category": "lexical",
+      "rule": "Same English head renders consistently within a domain: 'media' → وسائل الإعلام (not وسائط when meaning press), 'press' → صحافة/صحفي, 'film' → فيلم, 'shot' → لقطة, 'coverage' → تغطية.",
+      "algorithm": [
+        "1. extract head noun of the term",
+        "2. lookup domain head table (built per-domain from corpus frequencies)",
+        "3. reuse the same head rendering across the domain; deviations only for established exceptions"
+      ],
+      "support": 570,
+      "examples": [
+        {"en": "media impact / media effects / media convergence", "ar": "تأثير وسائل الإعلام / مفعول وسائل الإعلام / اندماج وسائل الإعلام"},
+        {"en": "pan shot / master shot / full shot", "ar": "لقطة استعراضية / لقطة رئيسية / لقطة شاملة"}
+      ]
+    },
+    {
+      "id": "R16_numbers_dates_localization",
+      "name_en": "Number & Date Localization",
+      "name_ar": "توطين الأرقام والتواريخ",
+      "category": "orthographic",
+      "rule": "Corpus writes years in Arabic-Indic digits with trailing م for ميلادي: ١٩٤٨ م. Digit order in RTL text layers must be restored (source PDF stored ٨٤٩١ for ١٩٤٨).",
+      "algorithm": [
+        "1. convert/keep Arabic-Indic digits ٠١٢٣٤٥٦٧٨٩",
+        "2. append ' م' after Gregorian years, ' هـ' after Hijri",
+        "3. when parsing RTL PDFs: reverse any digit run (visual-order artifact)",
+        "4. ordinals: first edition → طبعة أولى (feminine agreement)"
+      ],
+      "support": 128,
+      "examples": [
+        {"en": "Sabra and Shatila massacre 1982", "ar": "مذبحة صابرا وشاتيلا عام ١٩٨٢ م"},
+        {"en": "Esquipulas II accord (1987)", "ar": "اتفاقية إسكيبولاس الثانية عام ١٩٨٧"}
+      ]
+    },
+    {
+      "id": "R17_pdf_text_repair",
+      "name_en": "Corrupted-Text Repair Heuristics (conversion-time)",
+      "name_ar": "خوارزميات إصلاح طبقة النص الفاسدة (زمن التحويل)",
+      "category": "engineering",
+      "rule": "Both PDFs carry systematic text-layer corruption; deterministic repairs restored the corpus before mining.",
+      "algorithm": [
+        "1. NFKC-normalize; strip bidi marks and tatweel (U+0640)",
+        "2. trailing tatweel = dropped final م (العاـ → العام)",
+        "3. rare-codepoint map (media font): U+063F→ل, U+063C→ف, U+063D→ق, U+063E→ك, U+063B→غ",
+        "4. lam-alef ligature reordering: اإل→الإ, األ→ال+أ, اال→الا",
+        "5. positional-form confusions (media): final ن→ف (عنوان→عناف), ل→م (تحليل→تحميل), medial ه→ي (تمهيد→تمييد) — repaired by curated word map from full manual review",
+        "6. duplicated text layers: collapse identical adjacent lines + tail-duplication dedup",
+        "7. RTL digit runs stored reversed → flip (٨٤٩١→١٩٤٨)",
+        "8. cross-validate: two independent sections (Arabic index / English main) of the media dictionary vote per entry (quality scoring + 192 overrides)"
+      ],
+      "support": 1600,
+      "examples": [
+        {"en": "index said إعالف / main said إعالن", "ar": "إعلان (reconstructed)"},
+        {"en": "year printed ٨٤٩١ in text layer", "ar": "١٩٤٨ (Deir Yassin massacre — historically verified)"}
+      ]
+    }
+  ]
+}

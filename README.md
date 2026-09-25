@@ -68,6 +68,31 @@
 
 ---
 
+## 🆕 إضافة 2026-09: معجما السياسة والإعلام (PDF) + خوارزميات قواعد الترجمة
+
+مصدران جديدان محوَّلان بالكامل، مع استخراج قواعد الترجمة من المدونة المتوازية في صورة خوارزميات:
+
+| الملف | المحتوى | الحجم |
+|---|---|---:|
+| `political_encyclopedia_terms_en_ar.csv` | مصطلحات «الموسوعة الميسرة للمصطلحات السياسية» (508 ص) | 1030 زوجاً |
+| `political_encyclopedia_definitions_en_ar.csv` | المصطلحات نفسها + التعريف العربي الكامل | 1007 مدخلات |
+| `political_encyclopedia_sentences_en_ar.csv` | جمل/عبارات ثنائية اللغة منقَّبة من التعريفات | 434 زوجاً |
+| `media_dictionary_terms_en_ar.csv` | «معجم مصطلحات الإعلام» (مجمع اللغة العربية، 121 ص) — نسخة كاملة بعد إصلاح طبقة النص الفاسدة وتصويت قسمي الكتاب | 570 مصطلحاً |
+| `algorithms/media_political_translation_rules.md` | 17 قاعدة ترجمة كخوارزميات (pseudocode + أشجار قرار) مدعومة بإحصاءات المدونة | — |
+| `algorithms/media_political_translation_rules.json` | القواعد نفسها بصيغة آلية (support/precision/أمثلة) | — |
+| `algorithms/media_political_rules_mined_evidence.json` | مخرَج التعدين الإحصائي الخام | — |
+| `scripts/translation_rules_engine.py` | محرك قواعد EN→AR قابل للتنفيذ (`--self-test` = 11/11) | — |
+| `scripts/dump_pdf_pages.py` و`extract_*` و`mine_*` و`build_en_ar_csvs.py` | خط أنابيب التحويل كاملاً (قابل لإعادة التشغيل) | — |
+| `notes/pdf_conversion_report_media_political.md` | تقرير التحويل المفصّل (خرائط فساد الخطوط وخوارزميات الإصلاح والتحقق) | — |
+
+**الإجمالي الجديد:** ‏1600 زوج مصطلحات + 434 زوج جمل/عبارات + 1007 تعريفات.
+
+**ملاحظة:** `media_terms_ilaam_glossary_en_ar.csv` السابق تبيّن أنه من طبعة/مصدر مختلف
+عن PDF معجم الإعلام المحوَّل هنا (68 مصطلحاً متداخلاً فقط) — الملف الجديد
+`media_dictionary_terms_en_ar.csv` هو التحويل الكامل للملف المرفوع.
+
+---
+
 ## 📋 مخطط CSV
 
 كل ملف CSV يحتوي على 3 أعمدة:
