@@ -1,4 +1,4 @@
-name: CI — dictionaries-csv (Lenient)
+name: CI — dictionaries-csv
 
 on:
   push:
@@ -42,53 +42,51 @@ jobs:
       - name: Install dependencies (lenient)
         run: |
           python -m pip install --upgrade pip
-          pip install pytest pytest-cov || true
-          pip install beautifulsoup4 lxml pdfplumber python-docx || true
-          pip install readmdict || true
+          pip install pytest pytest-cov ruff mypy
+          pip install beautifulsoup4 lxml pdfplumber python-docx
+          pip install readmdict
           # Optional: install tesseract for OCR tests
-          sudo apt-get update || true
-          sudo apt-get install -y tesseract-ocr tesseract-ocr-ara tesseract-ocr-eng || true
+          sudo apt-get update
+          sudo apt-get install -y tesseract-ocr tesseract-ocr-ara tesseract-ocr-eng
 
-      - name: Lint with ruff (non-blocking)
-        run: ruff check scripts/ --output-format=github || true
-        continue-on-error: true
+      - name: Lint with ruff
+        run: ruff check scripts/ --output-format=github
 
-      - name: Type check with mypy (non-blocking)
-        run: mypy scripts/ --ignore-missing-imports || true
-        continue-on-error: true
+      - name: Type check with mypy
+        run: mypy scripts/ --ignore-missing-imports
 
       - name: Run tests
-        run: pytest tests/ -v --tb=short || pytest test_fixes.py -v --tb=short || python -m pytest -v --tb=short || true
+        run: pytest tests/ -v --tb=short
 
-      - name: Validate CSV files (lenient — pre-existing data issues are warnings)
+      - name: Validate CSV files
         run: |
           python -c "
           import csv
           from pathlib import Path
-          warnings = []
+          errors = []
           for csv_file in Path('csv').glob('*.csv'):
               try:
                   with open(csv_file, encoding='utf-8-sig') as f:
                       reader = csv.reader(f)
                       header = next(reader, None)
                       if header and len(header) != 3:
-                          warnings.append(f'{csv_file.name}: expected 3 columns, got {len(header)} (pre-existing data issue)')
+                          errors.append(f'{csv_file.name}: expected 3 columns, got {len(header)}')
                       rows = sum(1 for _ in reader)
                       print(f'  {csv_file.name}: {rows} rows')
               except Exception as e:
-                  warnings.append(f'{csv_file.name}: {e} (pre-existing data issue)')
-          if warnings:
-              print('WARNINGS (non-fatal, pre-existing data issues to be fixed in a data PR):')
-              for w in warnings:
-                  print(f'  ! {w}')
+                  errors.append(f'{csv_file.name}: {e}')
+          if errors:
+              print('CSV validation errors:')
+              for error in errors:
+                  print(f'  ! {error}')
+              raise SystemExit(1)
           print('All CSV files inspected')
           "
 
       - name: Check for hardcoded paths
         run: |
           if grep -r "/home/z/" scripts/ 2>/dev/null; then
-            echo "Found hardcoded paths - applying auto-fix..."
-            sed -i 's|/home/z/my-project/dict_work|.|g' scripts/convert_dicts.py || true
-            sed -i 's|/home/z/my-project/dict_work|.|g' scripts/ocr_pdf_ar1.py || true
+            echo "Found hardcoded paths"
+            exit 1
           fi
           echo "Hardcoded path check complete"
