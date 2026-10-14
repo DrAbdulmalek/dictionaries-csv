@@ -1,3 +1,17 @@
+> [!IMPORTANT]
+> **📦 أُرشف هذا المستودع بالكامل خارج GitHub** — النسخة الكاملة (الشيفرة + تاريخ git كامل + جميع الفروع) محفوظة في:
+>
+> | الوجهة | المسار |
+> |---|---|
+> | 🤗 Hugging Face Bucket | [`DrAbdulmalek/github-repo-backups`](https://huggingface.co/buckets/DrAbdulmalek/github-repo-backups) — الملف: `2026-10-14/dictionaries-csv_2026-10-14.tar.gz` (120 MB) *(خاص — يتطلب توكن HF)* |
+> | 📁 Google Drive | `github-repo-backups/2026-10-14/dictionaries-csv_2026-10-14.tar.gz` |
+>
+> **SHA256**: `66ac283574abe89d51ceab82b0537ee5060456e9713b21d071c9a65744a62e2e`
+> **آخر كومِت مُؤرشف**: `909fa36b42ff` — 2026-10-08T00:05:33Z — "Merge PR #4: docs: تحليل apk-reverse لاستخراج مفردات القواميس من APK"
+>
+> للاستعادة راجع `RESTORE.md` داخل الـ Bucket. *تاريخ الأرشفة: 2026-10-14 — هذا المستودع أُرشف كاملاً.*
+
+
 # Dictionary Collection — CSV Conversions
 
 مجموعة قواميس ثنائية اللغة (إنجليزي ⇄ عربي) محوّلة إلى صيغة CSV موحّدة.
